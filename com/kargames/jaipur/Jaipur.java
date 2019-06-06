@@ -4,12 +4,10 @@ import com.kargames.jaipur.controller.AiController;
 import com.kargames.jaipur.controller.ConsoleController;
 
 public class Jaipur {
-	
 	public static final int NUM_START_CAMELS = 3;
 	public static final int MARKET_SIZE = 5;
 	public static final int START_HAND_SIZE = 5;
 	public static final int MAX_HAND_SIZE = 7;
-	
 	
 	Player p1;
 	Player p2;
@@ -20,13 +18,11 @@ public class Jaipur {
 		new Jaipur();
 	}
 	
-
 	public Jaipur() {
 		p1 = new Player(new ConsoleController(), "Player 1");
 		//p1 = new Player(new AiController(1), "Player 1");
 		p2 = new Player(new AiController(1), "Player 2");
 		Round round = new Round(p1, p2);
-		System.out.println("asdf");
 
 		long startTime = System.currentTimeMillis();
 		Player loser = p1;

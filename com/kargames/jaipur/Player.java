@@ -1,7 +1,5 @@
 package com.kargames.jaipur;
 
-import java.util.ArrayList;
-
 import com.kargames.jaipur.action.Action;
 import com.kargames.jaipur.controller.Controller;
 import com.kargames.jaipur.token.SpecialToken;

@@ -1,7 +1,5 @@
 package com.kargames.jaipur;
 
-import java.util.HashSet;
-
 import com.kargames.jaipur.token.SpecialToken;
 import com.kargames.jaipur.token.Token;
 import com.kargames.jaipur.token.TokenSet;
@@ -22,7 +20,6 @@ public class Round {
 	}
 	
 	public Player playRound(Player firstPlayer) {
-
 		setupTokens();
 		setupCards();
 		setupPlayers();
@@ -31,15 +28,15 @@ public class Round {
 		Player currentPlayer = firstPlayer;
 
 		while (!done) {
-			
 			displayBoard();
-			
 			currentPlayer.getPlayerAction(this).applyAction(this, currentPlayer);
 			done = checkRoundComplete();
-			
 			currentPlayer = (currentPlayer == p1) ? p2 : p1;
 		}
-		return getWinner();
+		Player winner = getWinner();
+		p1.endOfRound();
+		p2.endOfRound();
+		return winner;
 	}
 	
 	public Player getWinner() {
@@ -72,10 +69,7 @@ public class Round {
 		}
 		winner.numWins++;
 		Out.log(winner.name + " wins!");
-		p1.endOfRound();
-		p2.endOfRound();
 		return winner;
-		
 	}
 	
 	public void giveSummary(Player p ) {
@@ -83,8 +77,6 @@ public class Round {
 		Out.log("Special tokens (" + p.specialTokens.getPointValue() + ") " + p.specialTokens);
 		Out.log("Total Score: " + (p.getScore() + p.specialTokens.getPointValue()));
 		Out.log("");
-		
-		
 	}
 	
 	public void refillMarket() {
@@ -126,8 +118,6 @@ public class Round {
 	}
 	
 	public void setupPlayers() {
-
-		
 		for (int i = 0; i < 5; i++) {
 			p1.giveCard(deck.draw());
 			p2.giveCard(deck.draw());
